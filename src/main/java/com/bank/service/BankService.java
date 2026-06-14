@@ -11,4 +11,13 @@ public class BankService {
         System.out.println("Account created successfully");
     }
 
+
+    public  Account findAccount(String accountNumber){
+        for (Account account : accounts){
+            if (account.getAccountNumber().equals(accountNumber)){
+                return account;
+            }
+        }
+        return  null;
+    }
 }

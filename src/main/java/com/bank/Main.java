@@ -14,6 +14,14 @@ public class Main {
         account.deposit(500);
         account.withdraw(200);
         System.out.println("Current Balance: " + account.getBalance());
-        //System.out.println("Bank Management System Starte");
+
+
+        Account foundAccount = bankService.findAccount("ACC1001");
+        if (foundAccount != null){
+            System.out.println("Account found: "+ foundAccount.getAccountNumber());
+        }
+
+
     }
+
 }
