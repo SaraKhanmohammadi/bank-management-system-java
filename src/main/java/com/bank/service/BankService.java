@@ -1,13 +1,20 @@
 package com.bank.service;
 import com.bank.model.Account;
 import java.util.ArrayList;
+import com.bank.util.FileService;
 
 public class BankService {
 
     private ArrayList<Account> accounts = new ArrayList<>();
-
+    private FileService fileService = new FileService();
     public void createAccount(Account account) {
         accounts.add(account);
+        String data =
+                account.getAccountNumber()
+                        + ","
+                        + account.getOwner().getName();
+
+        fileService.saveAccount(data);
         System.out.println("Account created successfully");
     }
 
