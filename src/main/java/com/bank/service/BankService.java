@@ -2,6 +2,9 @@ package com.bank.service;
 import com.bank.model.Account;
 import java.util.ArrayList;
 import com.bank.util.FileService;
+import com.bank.model.User;
+
+import java.util.ArrayList;
 
 public class BankService {
 
@@ -46,5 +49,30 @@ public class BankService {
             System.out.println(e.getMessage());
         }
     }
+    public void loadAccounts() {
+
+        ArrayList<String> savedAccounts =
+                fileService.readAccounts();
+
+        for (String data : savedAccounts) {
+
+            String[] parts = data.split(",");
+
+            String accountNumber = parts[0];
+
+            String ownerName = parts[1];
+
+            User user =
+                    new User(ownerName, "Unknown");
+
+            Account account =
+                    new Account(accountNumber, user);
+
+            accounts.add(account);
+        }
+
+        System.out.println("Accounts loaded successfully");
+    }
+
 
 }

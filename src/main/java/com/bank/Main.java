@@ -14,8 +14,9 @@ public class Main {
         User secondUser= new User("Hamid", "9876543210");
         Account secondAccount = new Account("ACC2001", secondUser);
         BankService bankService = new BankService();
-        bankService.createAccount(account);
-        bankService.createAccount(secondAccount);
+        //bankService.createAccount(account);
+        //bankService.createAccount(secondAccount);
+        bankService.loadAccounts();
         account.deposit(500);
 
         try {
@@ -28,7 +29,13 @@ public class Main {
         }
 
         System.out.println("Current Balance: " + account.getBalance());
+        Account loadedAccount = bankService.findAccount("ACC1001");
 
+        if (loadedAccount != null) {
+
+            System.out.println(loadedAccount.getOwner().getName()
+            );
+        }
 
         Account foundAccount = bankService.findAccount("ACC1001");
         if (foundAccount != null){
@@ -41,7 +48,7 @@ public class Main {
         System.out.println("Transaction History:");
         account.printTransactionHistory();
 
-        
+
         FileService fileService =
                 new FileService();
 
