@@ -36,6 +36,8 @@ public class Main {
         System.out.println("First Account Balance: " + account.getBalance());
 
         System.out.println("Second Account Balance: " + secondAccount.getBalance());
+        System.out.println("Transaction History:");
+        account.printTransactionHistory();
     }
 
 }
