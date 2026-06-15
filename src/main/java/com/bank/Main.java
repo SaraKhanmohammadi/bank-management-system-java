@@ -3,6 +3,8 @@ package com.bank;
 import com.bank.model.Account;
 import com.bank.model.User;
 import com.bank.service.BankService;
+import com.bank.util.FileService;
+import java.util.ArrayList;
 
 public class Main {
     public  static  void main(String[] args){
@@ -38,6 +40,19 @@ public class Main {
         System.out.println("Second Account Balance: " + secondAccount.getBalance());
         System.out.println("Transaction History:");
         account.printTransactionHistory();
+
+        
+        FileService fileService =
+                new FileService();
+
+        ArrayList<String> savedAccounts =
+                fileService.readAccounts();
+
+        for (String data : savedAccounts) {
+
+            System.out.println(data);
+        }
+
     }
 
 }
