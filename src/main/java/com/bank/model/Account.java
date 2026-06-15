@@ -1,5 +1,5 @@
 package com.bank.model;
-
+import com.bank.exception.InsufficientBalanceException;
 public class Account {
     private String accountNumber;
     private  double balance;
@@ -31,10 +31,9 @@ public class Account {
         balance += amount;
     }
 
-    public  void withdraw(double amount){
+    public  void withdraw(double amount) throws  InsufficientBalanceException{
         if (amount > balance){
-            System.out.println("Insufficient balance");
-            return;
+            throw new InsufficientBalanceException("Insufficient balance");
         }
         balance -= amount;
     }

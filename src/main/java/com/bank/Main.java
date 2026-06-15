@@ -15,16 +15,24 @@ public class Main {
         bankService.createAccount(account);
         bankService.createAccount(secondAccount);
         account.deposit(500);
-        account.withdraw(200);
-        System.out.println("Current Balance: " + account.getBalance());
 
+        try {
+
+            account.withdraw(200);
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("Current Balance: " + account.getBalance());
 
 
         Account foundAccount = bankService.findAccount("ACC1001");
         if (foundAccount != null){
             System.out.println("Account found: "+ foundAccount.getAccountNumber());
         }
-        bankService.transfer("ACC1001", "ACC2001", 100);
+        bankService.transfer("ACC1001", "ACC2001", 1000);
         System.out.println("First Account Balance: " + account.getBalance());
 
         System.out.println("Second Account Balance: " + secondAccount.getBalance());

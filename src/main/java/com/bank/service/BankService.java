@@ -29,10 +29,15 @@ public class BankService {
             System.out.println("Account not found");
             return;
         }
+        try {
 
-        fromAccount.withdraw(amount);
-        toAccount.deposit(amount);
-        System.out.println("Transfer successful");
+            fromAccount.withdraw(amount);
+            toAccount.deposit(amount);
+            System.out.println("Transfer successful");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
