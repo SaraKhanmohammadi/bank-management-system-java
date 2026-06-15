@@ -15,7 +15,11 @@ public class BankService {
         String data =
                 account.getAccountNumber()
                         + ","
-                        + account.getOwner().getName();
+                        + account.getOwner().getName()
+                        + ","
+                        + account.getOwner().getNationalId()
+                        + ","
+                        + account.getBalance();
 
         fileService.saveAccount(data);
         System.out.println("Account created successfully");
@@ -56,17 +60,31 @@ public class BankService {
 
         for (String data : savedAccounts) {
 
+            if (data.trim().isEmpty()) {
+
+                continue;
+            }
+
             String[] parts = data.split(",");
+
+
 
             String accountNumber = parts[0];
 
             String ownerName = parts[1];
 
+            String nationalId = parts[2];
+
+            double balance =
+                    Double.parseDouble(parts[3]);
+
             User user =
-                    new User(ownerName, "Unknown");
+                    new User(ownerName, nationalId);
 
             Account account =
                     new Account(accountNumber, user);
+
+            account.deposit(balance);
 
             accounts.add(account);
         }

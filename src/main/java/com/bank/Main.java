@@ -14,8 +14,8 @@ public class Main {
         User secondUser= new User("Hamid", "9876543210");
         Account secondAccount = new Account("ACC2001", secondUser);
         BankService bankService = new BankService();
-        //bankService.createAccount(account);
-        //bankService.createAccount(secondAccount);
+        bankService.createAccount(account);
+        bankService.createAccount(secondAccount);
         bankService.loadAccounts();
         account.deposit(500);
 
