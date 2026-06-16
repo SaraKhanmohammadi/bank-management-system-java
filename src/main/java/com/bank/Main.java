@@ -5,61 +5,77 @@ import com.bank.model.User;
 import com.bank.service.BankService;
 import com.bank.util.FileService;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+
 
 public class Main {
-    public  static  void main(String[] args){
 
-        User user = new User("Sara", "1234567890" );
-        Account account = new Account("ACC1001", user);
-        User secondUser= new User("Hamid", "9876543210");
-        Account secondAccount = new Account("ACC2001", secondUser);
-        BankService bankService = new BankService();
-        bankService.createAccount(account);
-        bankService.createAccount(secondAccount);
+    public static void main(String[] args) {
+
+        BankService bankService =
+                new BankService();
+
         bankService.loadAccounts();
-        account.deposit(500);
 
-        try {
+        Scanner scanner =
+                new Scanner(System.in);
 
-            account.withdraw(200);
+        boolean running = true;
 
-        } catch (Exception e) {
+        while (running) {
 
-            System.out.println(e.getMessage());
+            System.out.println("\n=== BANK MENU ===");
+
+            System.out.println("1. Create Account");
+            System.out.println("2. Exit");
+
+            System.out.print("Choose option: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1:
+
+                    scanner.nextLine();
+
+                    System.out.print("Enter name: ");
+                    String name =
+                            scanner.nextLine();
+
+                    System.out.print("Enter national ID: ");
+                    String nationalId =
+                            scanner.nextLine();
+
+                    System.out.print("Enter account number: ");
+                    String accountNumber =
+                            scanner.nextLine();
+
+                    User user =
+                            new User(name, nationalId);
+
+                    Account account =
+                            new Account(accountNumber, user);
+
+                    bankService.createAccount(account);
+
+                    break;
+
+                case 2:
+
+                    running = false;
+
+                    System.out.println("Goodbye");
+
+                    break;
+
+                default:
+
+                    System.out.println("Invalid option");
+            }
         }
 
-        System.out.println("Current Balance: " + account.getBalance());
-        Account loadedAccount = bankService.findAccount("ACC1001");
-
-        if (loadedAccount != null) {
-
-            System.out.println(loadedAccount.getOwner().getName()
-            );
-        }
-
-        Account foundAccount = bankService.findAccount("ACC1001");
-        if (foundAccount != null){
-            System.out.println("Account found: "+ foundAccount.getAccountNumber());
-        }
-        bankService.transfer("ACC1001", "ACC2001", 1000);
-        System.out.println("First Account Balance: " + account.getBalance());
-
-        System.out.println("Second Account Balance: " + secondAccount.getBalance());
-        System.out.println("Transaction History:");
-        account.printTransactionHistory();
-
-
-        FileService fileService =
-                new FileService();
-
-        ArrayList<String> savedAccounts =
-                fileService.readAccounts();
-
-        for (String data : savedAccounts) {
-
-            System.out.println(data);
-        }
-
+        scanner.close();
     }
-
 }
