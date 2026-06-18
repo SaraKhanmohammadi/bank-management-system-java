@@ -1,5 +1,6 @@
 package com.bank.util;
 
+import com.bank.model.Account;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -65,5 +66,41 @@ public class FileService {
         }
 
         return accounts;
+    }
+    public void overwriteAccounts(
+            ArrayList<Account> accounts) {
+
+        try {
+
+            BufferedWriter writer =
+                    new BufferedWriter(
+                            new FileWriter(
+                                    "data/accounts.txt",
+                                    false
+                            )
+                    );
+
+            for (Account account : accounts) {
+
+                String data =
+                        account.getAccountNumber()
+                                + ","
+                                + account.getOwner().getName()
+                                + ","
+                                + account.getOwner().getNationalId()
+                                + ","
+                                + account.getBalance();
+
+                writer.write(data);
+
+                writer.newLine();
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+
+            System.out.println(e.getMessage());
+        }
     }
 }

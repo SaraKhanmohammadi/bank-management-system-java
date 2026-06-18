@@ -91,6 +91,10 @@ public class BankService {
 
         System.out.println("Accounts loaded successfully");
     }
+    public void saveAllAccounts() {
+
+        fileService.overwriteAccounts(accounts);
+    }
 
 
 }
