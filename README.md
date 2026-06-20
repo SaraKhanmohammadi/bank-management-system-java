@@ -38,5 +38,18 @@ java Main
 
 
 
+## Skills Demonstrated
+
+- Object-Oriented Programming (OOP)
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Collections Framework
+- Exception Handling
+- File Persistence
+- Git & GitHub
+
+
+
 ## Author
 Sara Khanmohammadi
