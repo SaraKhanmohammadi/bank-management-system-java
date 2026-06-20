@@ -1,20 +1,42 @@
 # Bank Management System
 
-A simple console-based banking system developed with Java.
+A console-based banking application developed using Java.
 
 ## Features
+
 - Create Account
-- Deposit
-- Withdraw
+- Deposit Money
+- Withdraw Money
 - Transfer Money
-- Transaction History
+- View Transaction History
+- File Persistence
 
 ## Technologies
+
 - Java
 - OOP
 - Collections
-- Exception Handling
 - File Handling
+- Exception Handling
+- Maven
+
+## Project Structure
+
+src
+├── model
+├── service
+├── repository
+├── ui
+
+## How to Run
+
+git clone ...
+
+mvn clean install
+
+java Main
+
+
 
 ## Author
 Sara Khanmohammadi
